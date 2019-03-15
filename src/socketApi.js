@@ -49,6 +49,10 @@ io.on('connection', (socket) => {
        });
    });
 
+   socket.on('newMessage', (messageData) => {
+      io.emit('newMessage', (messageData));
+   });
+
 
 
 });

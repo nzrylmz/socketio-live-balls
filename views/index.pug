@@ -6,7 +6,7 @@ block content
       .column.twelve.wide
         .ui.stacked.segment.gameArea(ng-click="onClickPlayer($event)")
 
-          .circle(
+          .circle.noSelect(
             ng-repeat="player in players",
             ng-style="{'left': player.position.x + 'px', 'top': player.position.y + 'px'}",
             id="{{player.id}}",
@@ -16,13 +16,19 @@ block content
               span.name {{ player.username }}
               // .message
 
-        .ui.items.chat
+        .ui.items.chat#chat-area
           .item(ng-repeat="message in messages")
             .content(ng-if="!message.type")
-              span [SİSTEM]
-              a.header.name {{ message.username }}
+              span [SİSTEM]&nbsp
+              a.header.name {{ message.username }}&nbsp
               .description.message
-                |  {{ message.text }}
-        .ui.action.input.fluid
-          input(type='text', placeholder='Type here...')
-          button.ui.button Send
+                | {{ message.text }}
+
+            .content(ng-if="message.type")
+              a.header.name {{ message.username }}&nbsp:&nbsp
+              .description.message
+                | {{ message.text }}
+
+        form.ui.action.input.fluid(ng-submit="newMessage()")
+          input(ng-model='message', placeholder='Mesaj...' maxlength="100")
+          button.ui.button(type="submit") Gönder

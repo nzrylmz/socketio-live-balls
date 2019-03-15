@@ -67,10 +67,9 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                 $scope.onClickPlayer = ($event) => {
                     console.log($event.offsetX, $event.offsetY);
 
-
-
-                    let x = $event.offsetX, y = $event.offsetY;
-
+                    let x = $event.offsetX - ($('.circle').width() / 2);
+                    let y = $event.offsetY - ($('.circle').height() / 2);
+                    console.log(x, y)
                     if(!animate){
 
                         socket.emit('animate', { x, y });
@@ -81,8 +80,33 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         });
 
                     }
+                };
+
+                $scope.newMessage = () => {
+                  let message = $scope.message;
+
+                  const messageData = {
+                      type: 1, // 1 kullanıcı mesajı
+                      username: /*$scope.players[socket.id].*/username,
+                      text: message
+                  };
+
+                  socket.emit('newMessage', messageData);
+
+
 
                 };
+
+                socket.on('newMessage', (messageData) => {
+                    $scope.messages.push(messageData);
+                    $scope.message = '';
+                    $scope.$apply();
+
+                    const element = document.getElementById('chat-area');
+                    element.scrollTop = element.scrollHeight;
+                });
+
+
 
             }).catch((err) => {
             console.log(err);
