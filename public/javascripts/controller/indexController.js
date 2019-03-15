@@ -123,7 +123,6 @@ app.controller('indexController', ['$scope', 'indexFactory', 'configFactory', ($
               }
 
               scrollTop();
-              showBubble(messageData.id, messageData.text);
 
             };
 

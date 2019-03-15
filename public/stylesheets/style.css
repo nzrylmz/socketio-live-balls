@@ -75,10 +75,10 @@ body{
   bottom: 75px;
   line-height: 14px;
   color: #333;
-  background-color: #f1f1f1;
+  background-color: #fff;
   border-radius: 9px;
-  box-shadow: 0 1px 0.5px #909090;
-  padding: 3px 5px;
+  box-shadow: 0 10px 35px #bfbfbf;
+  padding: 5px 5px;
   right: 0;
   left: 0;
   text-align: center;
@@ -93,7 +93,7 @@ body{
 
 .newMessageIn {
   opacity: 1!important;
-  margin-bottom: 0!important;
+  margin-bottom: 10px!important;
   transform: scale(1)!important;
 }
 
