@@ -77,7 +77,7 @@ body{
   color: #333;
   background-color: #f1f1f1;
   border-radius: 9px;
-  box-shadow: 0 1px 1px #7c7c7c;
+  box-shadow: 0 1px 0.5px #909090;
   padding: 3px 5px;
   right: 0;
   left: 0;
@@ -113,6 +113,7 @@ body{
 }
 
 .chat{
+  width: 730px!important;
   margin-right: 10px!important;
   margin-left: 10px!important;
   padding-bottom: 20px!important;
@@ -131,4 +132,9 @@ body{
 }
 .chat .item{
   margin:.3em 0!important;
+}
+
+.ui.form {
+  width: 740px!important;
+  max-width: 740px!important;
 }

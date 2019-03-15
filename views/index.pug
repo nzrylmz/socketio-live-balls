@@ -29,6 +29,6 @@ block content
               .description.message
                 | {{ message.text }}
 
-        form.ui.action.input.fluid(ng-submit="newMessage()")
+        form.ui.action.input.fluid.form(ng-submit="newMessage()")
           input(ng-model='message', placeholder='Mesaj...' maxlength="100")
           button.ui.button(type="submit") Gönder
