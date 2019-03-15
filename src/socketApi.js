@@ -38,15 +38,20 @@ io.on('connection', (socket) => {
    });
 
    socket.on('animate', (data) => {
-       console.log(users[socket.id].username, data);
-       users[socket.id].position.x = data.x;
-       users[socket.id].position.y = data.y;
+       try{
+           console.log(users[socket.id].username, data);
+           users[socket.id].position.x = data.x;
+           users[socket.id].position.y = data.y;
 
-       socket.broadcast.emit('animate', {
-           socketId: socket.id,
-           x: data.x,
-           y: data.y
-       });
+           socket.broadcast.emit('animate', {
+               socketId: socket.id,
+               x: data.x,
+               y: data.y
+           });
+       }catch (e) {  // hata olursa program durmasın hatayı konsola yazdırsın
+           console.log(e);
+       }
+
    });
 
    socket.on('newMessage', (messageData) => {

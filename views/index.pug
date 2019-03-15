@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(ng-controller="indexController", ng-init="init()")
+  div(ng-controller="indexController", ng-init="init()", class="game")
     .ui.one.column.stackable.center.aligned.page.grid.margin-30
       .column.twelve.wide
         .ui.stacked.segment.gameArea(ng-click="onClickPlayer($event)")
@@ -14,7 +14,7 @@ block content
           )
             .relative
               span.name {{ player.username }}
-              // .message
+              .message
 
         .ui.items.chat#chat-area
           .item(ng-repeat="message in messages")

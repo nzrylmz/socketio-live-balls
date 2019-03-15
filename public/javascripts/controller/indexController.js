@@ -13,7 +13,20 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
         }
     };
 
+    showBubble = (id,message) => {
+
+        if(message){
+            $('#' + id).find('.message').addClass('newMessageIn').html(message);
+            setTimeout(() => {
+                $('#' + id).find('.message').removeClass('newMessageIn');
+            }, 3000)
+        }
+    };
+
+
     function initUsername (username) {
+
+        $('.game').css("opacity", "1");
 
         const connectionOptions = {
             reconnectionAttemts: 3,
@@ -88,10 +101,14 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                   const messageData = {
                       type: 1, // 1 kullanıcı mesajı
                       username: /*$scope.players[socket.id].*/username,
+                      id: $scope.players[socket.id].id,
                       text: message
                   };
 
-                  socket.emit('newMessage', messageData);
+                  if(messageData.text) {
+                      socket.emit('newMessage', messageData);
+                  }
+
 
 
 
@@ -104,6 +121,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
 
                     const element = document.getElementById('chat-area');
                     element.scrollTop = element.scrollHeight;
+                    showBubble(messageData.id, messageData.text);
                 });
 
 
